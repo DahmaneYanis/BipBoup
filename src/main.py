@@ -1,18 +1,18 @@
 import pygame as py
 
 from barre import Barre, Direction
-from keys_handler import move_barre, move_seconde_barre
+from keys_handler import move_barre
 
 
 class Game:
     score1 = 0
     score2 = 0
 
-    def __init__(self, screen, clock, running):
+    def __init__(self):
         py.init()
-        screen = py.display.set_mode((1280, 720))
-        clock = py.time.Clock()
-        running = True
+        self.screen = py.display.set_mode((1280, 720))
+        self.clock = py.time.Clock()
+        self.running = True
         self.play()
 
     def play(self):
@@ -20,15 +20,21 @@ class Game:
         barre = Barre(20, 0)
         seconde_barre = Barre(1240, 0)
 
-        while running:
+        while self.running:
             # poll for events
             # py.QUIT event means the user clicked X to close your window
             for event in py.event.get():
                 if event.type == py.QUIT:
-                    running = False
+                    self.running = False
 
             # fill the screen with a color to wipe away anything from last frame
             self.screen.fill("purple")
+            
+            barre.update(self.screen)
+            seconde_barre.update(self.screen)
+            
+            move_barre(barre, py.K_z, py.K_s)
+            move_barre(seconde_barre, py.K_UP, py.K_DOWN)
 
             # RENDER YOUR GAME HERE
 
@@ -42,10 +48,14 @@ class Game:
     def testFin(self):
         if self.score1 == 10:
             self.victoire("Joueur1")
-            running = False
+            self.running = False
         elif self.score2 == 10:
             self.victoire("Joueur2")
-            running = False
+            self.running = False
     
     def victoire():
         return
+    
+    
+if __name__ == "__main__":
+    Game().play()
