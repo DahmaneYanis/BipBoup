@@ -16,9 +16,10 @@ class Barre:
         
     def update(self, window : py.Surface) -> None:
         self.draw(window)
+        self.check_collisions(window)
         
     def draw(self, window : py.Surface) -> None:
-        py.draw.rect(window, (255, 255, 255), (self.x, self.y, 20, 100))
+        py.draw.rect(window, (0, 0, 0), (self.x, self.y, 20, 200))
         
         
     def move(self, direction : Direction) -> None:
@@ -27,3 +28,10 @@ class Barre:
         elif direction == Direction.BOTTOM:
             self.y += 10
             
+            
+    def check_collisions(self, window : py.Surface) -> None:
+        if self.y < 0:
+            self.y = 0
+        elif self.y > window.get_height() - 200:
+            self.y = window.get_height() - 200
+    
