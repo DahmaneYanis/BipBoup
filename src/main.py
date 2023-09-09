@@ -1,7 +1,7 @@
 import pygame as py
 
 from barre import Barre, Direction
-from keys_handler import move_barre, move_seconde_barre
+from keys_handler import move_barre
 
 class Game:
     score1 = 0
@@ -28,6 +28,12 @@ class Game:
 
             # fill the screen with a color to wipe away anything from last frame
             self.screen.fill("purple")
+            
+            barre.update(self.screen)
+            seconde_barre.update(self.screen)
+            
+            move_barre(barre, py.K_z, py.K_s)
+            move_barre(seconde_barre, py.K_UP, py.K_DOWN)
 
             # RENDER YOUR GAME HERE
 
@@ -41,13 +47,18 @@ class Game:
     def testFin(self):
         if self.score1 == 10:
             self.victoire("Joueur1")
-            running = False
+            self.running = False
         elif self.score2 == 10:
             self.victoire("Joueur2")
-            running = False
+            self.running = False
     
     def victoire(self, nomJoueur):
         self.screen.fill("White")
         # Félicite le avec un texte
         py.display.flip()
         return
+
+    
+    
+if __name__ == "__main__":
+    Game().play()

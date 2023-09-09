@@ -5,7 +5,7 @@ from enum import Enum, auto
 
 class Direction(Enum):
     TOP = auto()
-    BOTTOM = auto() 
+    BOTTOM = auto()
 
 
 class Barre:
