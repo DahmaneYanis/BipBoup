@@ -2,22 +2,38 @@ import pygame as py
 
 from barre import Barre, Direction
 from keys_handler import move_barre
+from score import ScoreText
+
+
+def check_ball_collisions(ball, barre : Barre) -> bool:
+    if ball.x < 0:
+        if ball.y > barre.y and ball.y < barre.y + 200:
+            return True
+    elif ball.x > 1280:
+        if ball.y > barre.y and ball.y < barre.y + 200:
+            return True
+    return False
+
 
 class Game:
     score1 = 0
     score2 = 0
 
     def __init__(self):
-        py.init()
+
         self.screen = py.display.set_mode((1280, 720))
         self.clock = py.time.Clock()
         self.running = True
         self.play()
+        
+        
 
     def play(self):
 
         barre = Barre(20, 0)
         seconde_barre = Barre(1240, 0)
+        
+        score_text = ScoreText(0)
 
         while self.running:
             # poll for events
@@ -31,6 +47,7 @@ class Game:
             
             barre.update(self.screen)
             seconde_barre.update(self.screen)
+            score_text.update(self.screen)
             
             move_barre(barre, py.K_z, py.K_s)
             move_barre(seconde_barre, py.K_UP, py.K_DOWN)
@@ -61,4 +78,7 @@ class Game:
     
     
 if __name__ == "__main__":
+    py.init()
+    py.font.init()
+    
     Game().play()

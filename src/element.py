@@ -15,3 +15,11 @@ class Element:
     def update(self, window : py.Surface) -> None:
         self.draw(window)
         self.check_collisions(window)
+    
+    def check_collisions(self, window : py.Surface) -> None:
+        raise NotImplementedError()
+    
+    
+    def draw(self, window : py.Surface) -> None:
+        raise NotImplementedError()
+
