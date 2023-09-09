@@ -2,16 +2,17 @@ import pygame as py
 
 
 class Game:
-    def __init__(self):
-        return 
-    
-    def play():
-        # pygame setup
+    score1 = 0
+    score2 = 0
+
+    def __init__(self, screen, clock, running):
         py.init()
         screen = py.display.set_mode((1280, 720))
         clock = py.time.Clock()
         running = True
+        self.play()
 
+    def play(self):
         while running:
             # poll for events
             # py.QUIT event means the user clicked X to close your window
@@ -20,13 +21,26 @@ class Game:
                     running = False
 
             # fill the screen with a color to wipe away anything from last frame
-            screen.fill("purple")
+            self.screen.fill("purple")
 
             # RENDER YOUR GAME HERE
 
             # flip() the display to put your work on screen
             py.display.flip()
 
-            clock.tick(60)  # limits FPS to 60
+            self.clock.tick(60)  # limits FPS to 60
 
         py.quit()
+
+    def testFin(self):
+        if score1 == 10:
+            victoire("Joueur1")
+            running = False
+        elif score2 == 10:
+            victoire("Joueur2")
+            running = False
+        
+
+        
+            
+        
