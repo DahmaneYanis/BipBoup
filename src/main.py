@@ -1,5 +1,8 @@
 import pygame as py
 
+from barre import Barre, Direction
+from keys_handler import move_barre, move_seconde_barre
+
 
 class Game:
     score1 = 0
@@ -13,6 +16,10 @@ class Game:
         self.play()
 
     def play(self):
+
+        barre = Barre(20, 0)
+        seconde_barre = Barre(1240, 0)
+
         while running:
             # poll for events
             # py.QUIT event means the user clicked X to close your window
@@ -33,14 +40,12 @@ class Game:
         py.quit()
 
     def testFin(self):
-        if score1 == 10:
-            victoire("Joueur1")
+        if self.score1 == 10:
+            self.victoire("Joueur1")
             running = False
-        elif score2 == 10:
-            victoire("Joueur2")
+        elif self.score2 == 10:
+            self.victoire("Joueur2")
             running = False
-        
-
-        
-            
-        
+    
+    def victoire():
+        return
